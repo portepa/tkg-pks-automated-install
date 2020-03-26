@@ -1,0 +1,1 @@
+pks delete-cluster cluster02

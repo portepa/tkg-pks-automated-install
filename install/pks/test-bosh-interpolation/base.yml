@@ -1,0 +1,131 @@
+az-configuration:
+- name: pks-az1
+  clusters:
+  - cluster: Cluster
+    resource_pool: pks-az1
+- name: pks-az2
+  clusters:
+  - cluster: Cluster
+    resource_pool: pks-az2
+- name: pks-az3
+  clusters:
+  - cluster: Cluster
+    resource_pool: pks-az3
+network-assignment:
+  network:
+    name: pks
+  other_availability_zones: []
+  singleton_availability_zone:
+    name: pks-az1
+networks-configuration:
+  icmp_checks_enabled: false
+  networks:
+  - name: pks
+    subnets:
+    - iaas_identifier: VM Network
+      cidr: ((cidr-infra))
+      dns: ((dns-servers))
+      gateway: ((gateway-infra))
+      reserved_ip_ranges: ((reserved-ip-ranges-infra))
+      availability_zone_names:
+      - pks-az1
+      - pks-az2
+      - pks-az3
+  # - name: PKS-Services
+  #   subnets:
+  #   - iaas_identifier: PKS-Services
+  #     cidr: ((cidr-services))
+  #     dns: ((dns-servers))
+  #     gateway: ((gateway-services))
+  #     reserved_ip_ranges: ((reserved-ip-ranges-services))
+  #     availability_zone_names:
+  #     - pks-az1
+  #     - pks-az2
+  #     - pks-az3
+properties-configuration:
+  director_configuration:
+    blobstore_type: local
+    bosh_recreate_on_next_deploy: false
+    bosh_recreate_persistent_disks_on_next_deploy: false
+    database_type: internal
+    director_worker_count: 5
+    encryption:
+      keys: []
+      providers: []
+    hm_emailer_options:
+      enabled: false
+    hm_pager_duty_options:
+      enabled: false
+    identification_tags: {}
+    job_configuration_on_tmpfs: false
+    keep_unreachable_vms: false
+    local_blobstore_options:
+      tls_enabled: true
+    ntp_servers_string: ((ntp-server))
+    post_deploy_enabled: false
+    resurrector_enabled: true
+    retry_bosh_deploys: false
+    skip_director_drain: false
+  dns_configuration:
+    excluded_recursors: []
+    handlers: []
+  security_configuration:
+    generate_vm_passwords: true
+    opsmanager_root_ca_trusted_certs: true
+    trusted_certificates: ((trusted-certificates))
+  syslog_configuration:
+    enabled: false
+  iaas_configuration:
+    additional_cloud_properties: {}
+    bosh_disk_path: bosh_disks
+    bosh_template_folder: bosh_templates
+    bosh_vm_folder: bosh_vms
+    datacenter: Datacenter
+    disk_type: thin
+    ephemeral_datastores_string: LUN01
+    name: default
+    # nsx_address: nsxmgr-01.haas-464.pez.pivotal.io
+    # nsx_ca_certificate: |
+    #   -----BEGIN CERTIFICATE-----
+    #   MIIDljCCAn6gAwIBAgIGAXCIO89cMA0GCSqGSIb3DQEBCwUAMIGLMSowKAYDVQQD
+    #   DCFuc3htZ3ItMDEuaGFhcy00NjQucGV6LnBpdm90YWwuaW8xHTAbBgNVBAoMFFBp
+    #   dm90YWwgU29mdHdhcmUgSW5jMQwwCgYDVQQLDANQRVoxCzAJBgNVBAYTAlVTMQsw
+    #   CQYDVQQIDAJDQTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzAeFw0yMDAyMjcxOTU5
+    #   NDZaFw0zMDAyMjQxOTU5NDZaMIGLMSowKAYDVQQDDCFuc3htZ3ItMDEuaGFhcy00
+    #   NjQucGV6LnBpdm90YWwuaW8xHTAbBgNVBAoMFFBpdm90YWwgU29mdHdhcmUgSW5j
+    #   MQwwCgYDVQQLDANQRVoxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTEWMBQGA1UE
+    #   BwwNU2FuIEZyYW5jaXNjbzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+    #   AN/Cpbn4HNv9T888pZi/+ecRgIsBjztDfaHqF+OH62Y1MD+vIXqg+chR9JPgjaL9
+    #   9/moa5zX6JFAyKUkKYB3pNxIBsf12ZJaJECGm4OXqNILwLnf1ZvzZ7qR/IwUgVqq
+    #   LeTccbHfW0ssay2s95Orbe/pbNva4ML8m6SmiotyLH/nCcqVNfs0NDTHtD5FTgVv
+    #   KvspDPwXOesPYLZqeRRpu43BS6cZI4pyCTHl9kb8u1tGIsBonukI/c1CbBvDM4tD
+    #   4lbDhb2qO/R4x/lS6hl0O4mQLcSgDPSBXKGJBsa/kIEtCV6Fq6AytjK2FfR0961J
+    #   i+ke//2t8+UxzHkA6oAVgmECAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAE4hxgXEq
+    #   Vea6cZrMLyphZRLmD4UVoD8LHIzClTxFfxDQE3oxvlkeBO9QeAnTwY0F4V++SVNf
+    #   AKRUhYphGKFQwJNMeYY3j9PuCMOmTjUc8vjeBI3bOc7YPo2wj1lhlE7UnFc/pH2e
+    #   ydiG9I1dhKLEtRZ6hYq3m62JiLuIaKbBgTG0l/lC2tCb/hB4ZT8CjbsWzJJNl2ih
+    #   F+apb39lO8YONfN6n3gNf5UcDJEJTbWuIB5D4HBbHcpqj2UY3+Io9vLtzZZAeF1G
+    #   GLqeqcpgspJOboPB+ieUN4qO/s6FCMy+rNjdex/+zmoIBRx9iJAua6mniOPKBlw2
+    #   siuQm8/1M2V94Q==
+    #   -----END CERTIFICATE-----
+    # nsx_mode: nsx-t
+    # nsx_networking_enabled: true
+    # nsx_username: admin
+    persistent_datastores_string: LUN01
+    ssl_verification_enabled: false
+    vcenter_host: ((vcenter-host))
+    vcenter_username: ((vcenter-username))
+    vcenter_password: ((vcenter-password))
+resource-configuration:
+  compilation:
+    instances: automatic
+    instance_type:
+      id: automatic
+  director:
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+    instance_type:
+      id: automatic
+vmextensions-configuration: []
+

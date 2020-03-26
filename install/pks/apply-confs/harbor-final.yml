@@ -1,0 +1,142 @@
+errand-config:
+  smoke-testing:
+    post-deploy-state: when-changed
+  uaa-deregistration:
+    pre-delete-state: false
+network-properties:
+  network:
+    name: pks
+  other_availability_zones:
+  - name: pks-az1
+  singleton_availability_zone:
+    name: pks-az1
+product-name: harbor-container-registry
+product-properties:
+  .harbor-app.static_ips:
+    value: 10.193.179.29
+  .properties.admin_password:
+    value:
+      secret: AHxOEg6fu3SHCDwUnm!
+  .properties.admin_password_for_smoketest:
+    value: {}
+  .properties.auth_mode:
+    value: db_auth
+  .properties.clair_updater_interval:
+    value: 0
+  .properties.customize_container_network:
+    value: default
+  .properties.hostname:
+    value: 10.193.179.29
+  .properties.initial_delay_minutes:
+    value: 60
+  .properties.log_insight:
+    value: disabled
+  .properties.no_proxy:
+    value: 127.0.0.1,localhost,ui,registry
+  .properties.registry_storage:
+    value: filesystem
+  .properties.server_cert_ca:
+    value: |
+      -----BEGIN CERTIFICATE-----
+      MIIEfjCCA2agAwIBAgICA+gwDQYJKoZIhvcNAQELBQAwfjELMAkGA1UEBhMCVVMx
+      EzARBgNVBAgMCkNhbGlmb3JuaWExEjAQBgNVBAcMCVBhbG8gQWx0bzEQMA4GA1UE
+      CgwHUGl2b3RhbDEMMAoGA1UECwwDUEVaMSYwJAYDVQQDDB0qLnJ1bi5oYWFzLTQ2
+      NC5wZXoucGl2b3RhbC5pbzAeFw0yMDAyMjcyMTMzNTBaFw0zMDAyMjQyMTMzNTBa
+      MH4xCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRIwEAYDVQQHDAlQ
+      YWxvIEFsdG8xEDAOBgNVBAoMB1Bpdm90YWwxDDAKBgNVBAsMA1BFWjEmMCQGA1UE
+      AwwdKi5ydW4uaGFhcy00NjQucGV6LnBpdm90YWwuaW8wggEiMA0GCSqGSIb3DQEB
+      AQUAA4IBDwAwggEKAoIBAQDB6TuVeTo24oucWAUxJDGk5VSwZJ9tbP479CBAlE4y
+      e6HxSXHmiPoa08MSpktIw7zOtYNlH34Rnmfal2ZhBNssRP9It1DOzheykNeMayqz
+      ojiLlBwYUMEuecgFvPAqeZylDs7zvZqP8+lWi61asrqPdzk7KAol01jHVOINqm1X
+      CI+IneTbpgwLSKB8HukMyk1EDquk1ebP5Mi9Dr0+NwvpzFlyiz3Vq792mxhoVmMI
+      3rL81qO6CHRpB4mtA+wt+xZDuUCEIpYZEV3QOUyitCbieHcN4rKhtGGMbo78GxSO
+      77ebkchNYNqcjPlHnS/KPhIiewX9Htr0LnPYYWmNHjSDAgMBAAGjggEEMIIBADCB
+      zgYDVR0RBIHGMIHDghkqLmhhYXMtNDY0LnBlei5waXZvdGFsLmlvgh0qLnJ1bi5o
+      YWFzLTQ2NC5wZXoucGl2b3RhbC5pb4IgKi5jZmFwcHMuaGFhcy00NjQucGV6LnBp
+      dm90YWwuaW+CIyoubG9naW4ucnVuLmhhYXMtNDY0LnBlei5waXZvdGFsLmlvgiEq
+      LnVhYS5ydW4uaGFhcy00NjQucGV6LnBpdm90YWwuaW+CHSoucGtzLmhhYXMtNDY0
+      LnBlei5waXZvdGFsLmlvMAsGA1UdDwQEAwICpDAgBgNVHSUBAf8EFjAUBggrBgEF
+      BQcDAQYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAIAwErIINZFFnHOqfVCN
+      5fZeuou5j/eVZNzoC2tMPuFeB7Ixp2etZTikJkauaBPl26cqu/HcpiPLdy+4Yjnl
+      u3rblkYDaf/b6Gp+jmYJVPHqrwUJ7Xb5jeQ4QSfgg58uR4srvy0jJIh5KhcbRp03
+      QVtMbzndNUeohAXHAk0Bl4sveJC2gYNCNe0M+Ob07KnUdNF6CaSESJCGw2YCP+BT
+      Wb0mq0jQTQSY21bm/t9O5DdmHlpx+kmuec8ZelTDgLpujrrh0wpYi6cZ1u213t4w
+      qg2rV17iaiZWiLpmFp1OtRO0d5UdLiaXRdhCunoI8NxV9iRNxCpqf8BxPIJZlDZu
+      2iU=
+      -----END CERTIFICATE-----
+  .properties.server_cert_key:
+    value:
+      cert_pem: |
+        -----BEGIN CERTIFICATE-----
+        MIIEfjCCA2agAwIBAgICA+gwDQYJKoZIhvcNAQELBQAwfjELMAkGA1UEBhMCVVMx
+        EzARBgNVBAgMCkNhbGlmb3JuaWExEjAQBgNVBAcMCVBhbG8gQWx0bzEQMA4GA1UE
+        CgwHUGl2b3RhbDEMMAoGA1UECwwDUEVaMSYwJAYDVQQDDB0qLnJ1bi5oYWFzLTQ2
+        NC5wZXoucGl2b3RhbC5pbzAeFw0yMDAyMjcyMTMzNTBaFw0zMDAyMjQyMTMzNTBa
+        MH4xCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRIwEAYDVQQHDAlQ
+        YWxvIEFsdG8xEDAOBgNVBAoMB1Bpdm90YWwxDDAKBgNVBAsMA1BFWjEmMCQGA1UE
+        AwwdKi5ydW4uaGFhcy00NjQucGV6LnBpdm90YWwuaW8wggEiMA0GCSqGSIb3DQEB
+        AQUAA4IBDwAwggEKAoIBAQDB6TuVeTo24oucWAUxJDGk5VSwZJ9tbP479CBAlE4y
+        e6HxSXHmiPoa08MSpktIw7zOtYNlH34Rnmfal2ZhBNssRP9It1DOzheykNeMayqz
+        ojiLlBwYUMEuecgFvPAqeZylDs7zvZqP8+lWi61asrqPdzk7KAol01jHVOINqm1X
+        CI+IneTbpgwLSKB8HukMyk1EDquk1ebP5Mi9Dr0+NwvpzFlyiz3Vq792mxhoVmMI
+        3rL81qO6CHRpB4mtA+wt+xZDuUCEIpYZEV3QOUyitCbieHcN4rKhtGGMbo78GxSO
+        77ebkchNYNqcjPlHnS/KPhIiewX9Htr0LnPYYWmNHjSDAgMBAAGjggEEMIIBADCB
+        zgYDVR0RBIHGMIHDghkqLmhhYXMtNDY0LnBlei5waXZvdGFsLmlvgh0qLnJ1bi5o
+        YWFzLTQ2NC5wZXoucGl2b3RhbC5pb4IgKi5jZmFwcHMuaGFhcy00NjQucGV6LnBp
+        dm90YWwuaW+CIyoubG9naW4ucnVuLmhhYXMtNDY0LnBlei5waXZvdGFsLmlvgiEq
+        LnVhYS5ydW4uaGFhcy00NjQucGV6LnBpdm90YWwuaW+CHSoucGtzLmhhYXMtNDY0
+        LnBlei5waXZvdGFsLmlvMAsGA1UdDwQEAwICpDAgBgNVHSUBAf8EFjAUBggrBgEF
+        BQcDAQYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAIAwErIINZFFnHOqfVCN
+        5fZeuou5j/eVZNzoC2tMPuFeB7Ixp2etZTikJkauaBPl26cqu/HcpiPLdy+4Yjnl
+        u3rblkYDaf/b6Gp+jmYJVPHqrwUJ7Xb5jeQ4QSfgg58uR4srvy0jJIh5KhcbRp03
+        QVtMbzndNUeohAXHAk0Bl4sveJC2gYNCNe0M+Ob07KnUdNF6CaSESJCGw2YCP+BT
+        Wb0mq0jQTQSY21bm/t9O5DdmHlpx+kmuec8ZelTDgLpujrrh0wpYi6cZ1u213t4w
+        qg2rV17iaiZWiLpmFp1OtRO0d5UdLiaXRdhCunoI8NxV9iRNxCpqf8BxPIJZlDZu
+        2iU=
+        -----END CERTIFICATE-----
+      private_key_pem: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDB6TuVeTo24ouc
+        WAUxJDGk5VSwZJ9tbP479CBAlE4ye6HxSXHmiPoa08MSpktIw7zOtYNlH34Rnmfa
+        l2ZhBNssRP9It1DOzheykNeMayqzojiLlBwYUMEuecgFvPAqeZylDs7zvZqP8+lW
+        i61asrqPdzk7KAol01jHVOINqm1XCI+IneTbpgwLSKB8HukMyk1EDquk1ebP5Mi9
+        Dr0+NwvpzFlyiz3Vq792mxhoVmMI3rL81qO6CHRpB4mtA+wt+xZDuUCEIpYZEV3Q
+        OUyitCbieHcN4rKhtGGMbo78GxSO77ebkchNYNqcjPlHnS/KPhIiewX9Htr0LnPY
+        YWmNHjSDAgMBAAECggEAQA+gaqIxFD7FprIBjRmK+RH2Z4vmi40NdJsTKKKWLuFf
+        P8pmwaWREtnQwVGE35Yiwxt+PCMqUAHIB5Qq83RaQAbPW6OMI7Y8Z/an7zDcW5oF
+        Gj+lBHdxSrxa02J26WFh2bnJrwZ9kH8hIEFm1Obk8U6O7rcsmxB2bOvi/mbGVpDf
+        K5SgyRg0YMa71fxaxvmxLoEFeOHxLQDpzwRNq25tqHaqk/jsj/5txchYmCvYk36X
+        Ve54gkRMjuoP1IcfQqL8IFgAazd6djovxIcT5kQZipOe4ISt8qNM8aYxnD4jWw8s
+        pvZ7wkZPta0tqBjHkWHzKJo21d9wGqigyUEvjUZrcQKBgQDlY7j6KCDQVtARTfYl
+        y8JabdCrIFBwvphB1LrThSTvFX0Fqv4YD2DY8Xi3c/mbeti/7eEZ7YdFGCpY9tkD
+        GbjXUJ1c2DlknSmuW9boucepcoWyDAQwx7aghEe18P0PYXQo/SiWsGTCPKSA3JWa
+        FXM1sjoLx8mhAM0b0/NP+SfbyQKBgQDYZ+QYvDAALvo2nEwDPcMYkJK7jL7yz4uD
+        6roKPexem27TYz40Y9Ktbn10O7bzqnUz7iBY+BcFEQHoGAXncD7/QxWjJU73OBlS
+        gpMrt+zn9oO8ybv/3gUvNTYM4t8fJARpJanNlenHtj9udYYtANyLFVLHb3G++AS1
+        uS7SDK9b6wKBgQDYwerBN7oKJH5oW6sE/A2jNbHAgsCASRnG2yXPSjkkUsHY4UNJ
+        qP5zAXp4n/Z1nRfEBRx4S6NO/w7FEjzuWRf5HgwU950EHh6My+u/7g1laPo8zG4J
+        Si6gb17z5cy7A/On59C60+PiRzuLKOWUvEAptUh0aU11/jPS3+1C3MV1QQKBgQCG
+        wZruNDGHy7kPzKAg3JLidxSIKYq2VLtB+CbFPe40s4F9rK0NnqOQT99bQ9wXO6wk
+        HEKUZFihVQfk6SC0D9eKyNFueEsF8y8BjEHs1Wl2wLEkHFMvb6e2z+HKgHQERj9g
+        4o0scg/Txw8Uz6Yv2/t5uFuFyUYBbxwvtRMMxc1k5QKBgQCEnoozVL+9kGjqGv+L
+        YuxjSWhInKeRgBGH1sV//urI1HIudN8fxihA8+DJJ0nIb0w+su+5FWqEMhKpD88J
+        t57CRaFRxAGnU6q5aRq7LLVfRwjDYenA8BbktjSs41o7zKx0mel6HnvxtA6hrZ7r
+        2uQJVOcd54UZO/9NjcWOB6y7YA==
+        -----END PRIVATE KEY-----
+  .properties.vm_monitor:
+    value: no_monitor
+  .properties.with_clair:
+    value: true
+  .properties.with_notary:
+    value: true
+resource-config:
+  harbor-app:
+    instance_type:
+      id: automatic
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+  smoke-testing:
+    instance_type:
+      id: automatic
+    instances: automatic

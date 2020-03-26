@@ -1,0 +1,486 @@
+---
+# Source: grafana/templates/podsecuritypolicy.yaml
+
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: grafana-release-grafana
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+  annotations:
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default'
+    seccomp.security.alpha.kubernetes.io/defaultProfileName:  'docker/default'
+    apparmor.security.beta.kubernetes.io/allowedProfileNames: 'runtime/default'
+    apparmor.security.beta.kubernetes.io/defaultProfileName:  'runtime/default'
+spec:
+  privileged: false
+  allowPrivilegeEscalation: false
+  requiredDropCapabilities:
+    # Default set from Docker, without DAC_OVERRIDE or CHOWN
+    - FOWNER
+    - FSETID
+    - KILL
+    - SETGID
+    - SETUID
+    - SETPCAP
+    - NET_BIND_SERVICE
+    - NET_RAW
+    - SYS_CHROOT
+    - MKNOD
+    - AUDIT_WRITE
+    - SETFCAP
+  volumes:
+    - 'configMap'
+    - 'emptyDir'
+    - 'projected'
+    - 'secret'
+    - 'downwardAPI'
+    - 'persistentVolumeClaim'
+  hostNetwork: false
+  hostIPC: false
+  hostPID: false
+  runAsUser:
+    rule: 'RunAsAny'
+  seLinux:
+    rule: 'RunAsAny'
+  supplementalGroups:
+    rule: 'RunAsAny'
+  fsGroup:
+    rule: 'RunAsAny'
+  readOnlyRootFilesystem: false
+
+---
+# Source: grafana/templates/tests/test-podsecuritypolicy.yaml
+
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: grafana-release-grafana-test
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+spec:
+  allowPrivilegeEscalation: true
+  privileged: false
+  hostNetwork: false
+  hostIPC: false
+  hostPID: false
+  fsGroup:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  volumes:
+  - configMap
+  - downwardAPI
+  - emptyDir
+  - projected
+  - secret
+
+---
+# Source: grafana/templates/secret.yaml
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: grafana-release-grafana
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+type: Opaque
+data:
+  admin-user: "YWRtaW4="
+  admin-password: "ZVFQaUZNRXBsQThBQWxidzd5SXhEWUs0N1NIeWliUEVvMHJ1MDBJdw=="
+  ldap-toml: ""
+
+---
+# Source: grafana/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-release-grafana
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+data:
+  grafana.ini: |
+    [analytics]
+    check_for_updates = true
+    [grafana_net]
+    url = https://grafana.net
+    [log]
+    mode = console
+    [paths]
+    data = /var/lib/grafana/data
+    logs = /var/log/grafana
+    plugins = /var/lib/grafana/plugins
+    provisioning = /etc/grafana/provisioning
+
+---
+# Source: grafana/templates/tests/test-configmap.yaml
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-release-grafana-test
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+data:
+  run.sh: |-
+    @test "Test Health" {
+      url="http://grafana-release-grafana/api/health"
+
+      code=$(wget --server-response --spider --timeout 10 --tries 1 ${url} 2>&1 | awk '/^  HTTP/{print $2}')
+      [ "$code" == "200" ]
+    }
+
+---
+# Source: grafana/templates/serviceaccount.yaml
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+  name: grafana-release-grafana
+  namespace: default
+
+---
+# Source: grafana/templates/tests/test-serviceaccount.yaml
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+  name: grafana-release-grafana-test
+  namespace: default
+
+---
+# Source: grafana/templates/clusterrole.yaml
+
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+  name: grafana-release-grafana-clusterrole
+rules: []
+
+---
+# Source: grafana/templates/clusterrolebinding.yaml
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: grafana-release-grafana-clusterrolebinding
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+subjects:
+  - kind: ServiceAccount
+    name: grafana-release-grafana
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: grafana-release-grafana-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+---
+# Source: grafana/templates/role.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  name: grafana-release-grafana
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+rules:
+- apiGroups:      ['extensions']
+  resources:      ['podsecuritypolicies']
+  verbs:          ['use']
+  resourceNames:  [grafana-release-grafana]
+
+---
+# Source: grafana/templates/tests/test-role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: grafana-release-grafana-test
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+rules:
+- apiGroups:      ['policy']
+  resources:      ['podsecuritypolicies']
+  verbs:          ['use']
+  resourceNames:  [grafana-release-grafana-test]
+
+---
+# Source: grafana/templates/rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: grafana-release-grafana
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: grafana-release-grafana
+subjects:
+- kind: ServiceAccount
+  name: grafana-release-grafana
+  namespace: default
+---
+# Source: grafana/templates/tests/test-rolebinding.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: grafana-release-grafana-test
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: grafana-release-grafana-test
+subjects:
+- kind: ServiceAccount
+  name: grafana-release-grafana-test
+  namespace: default
+
+---
+# Source: grafana/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-release-grafana
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+spec:
+  type: ClusterIP
+  ports:
+    - name: service
+      port: 80
+      protocol: TCP
+      targetPort: 3000
+
+  selector:
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+
+---
+# Source: grafana/templates/tests/test.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: grafana-release-grafana-test
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+  annotations:
+    "helm.sh/hook": test-success
+  namespace: default
+spec:
+  serviceAccountName: grafana-release-grafana-test
+  containers:
+    - name: grafana-release-test
+      image: "bats/bats:v1.1.0"
+      command: ["/opt/bats/bin/bats", "-t", "/tests/run.sh"]
+      volumeMounts:
+        - mountPath: /tests
+          name: tests
+          readOnly: true
+  volumes:
+  - name: tests
+    configMap:
+      name: grafana-release-grafana-test
+  restartPolicy: Never
+
+---
+# Source: grafana/templates/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-release-grafana
+  namespace: default
+  labels:
+    helm.sh/chart: grafana-5.0.4
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/instance: grafana-release
+    app.kubernetes.io/version: "6.6.2"
+    app.kubernetes.io/managed-by: Tiller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: grafana
+      app.kubernetes.io/instance: grafana-release
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: grafana
+        app.kubernetes.io/instance: grafana-release
+      annotations:
+        checksum/config: 8b4141ea93afb06248d88cdd2783890512fd228d6aa69902d5db7df9b5c00f39
+        checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+        checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+        checksum/secret: cb341570b24480b8ad79c82c8808e82e876e3d41d7a4a404c96403727ff3fa58
+    spec:
+      
+      serviceAccountName: grafana-release-grafana
+      securityContext:
+        fsGroup: 472
+        runAsUser: 472
+        
+      containers:
+        - name: grafana
+          image: "grafana/grafana:6.6.2"
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: "/etc/grafana/grafana.ini"
+              subPath: grafana.ini
+            - name: storage
+              mountPath: "/var/lib/grafana"
+          ports:
+            - name: service
+              containerPort: 80
+              protocol: TCP
+            - name: grafana
+              containerPort: 3000
+              protocol: TCP
+          env:
+            - name: GF_SECURITY_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-release-grafana
+                  key: admin-user
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-release-grafana
+                  key: admin-password
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 60
+            timeoutSeconds: 30
+            
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+            
+          resources:
+            {}
+            
+      volumes:
+        - name: config
+          configMap:
+            name: grafana-release-grafana
+        - name: storage
+          emptyDir: {}
+
+---
+# Source: grafana/templates/configmap-dashboard-provider.yaml
+
+
+---
+# Source: grafana/templates/dashboards-json-configmap.yaml
+
+
+---
+# Source: grafana/templates/headless-service.yaml
+
+
+---
+# Source: grafana/templates/ingress.yaml
+
+
+---
+# Source: grafana/templates/poddisruptionbudget.yaml
+
+
+---
+# Source: grafana/templates/pvc.yaml
+
+---
+# Source: grafana/templates/secret-env.yaml
+
+
+---
+# Source: grafana/templates/statefulset.yaml
+
+

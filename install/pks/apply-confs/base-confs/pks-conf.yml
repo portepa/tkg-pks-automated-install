@@ -1,0 +1,225 @@
+product-name: pivotal-container-service
+product-properties:
+  .pivotal-container-service.pks_tls:
+    value:
+      cert_pem: |
+        -----BEGIN CERTIFICATE-----
+        MIIEfjCCA2agAwIBAgICA+gwDQYJKoZIhvcNAQELBQAwfjELMAkGA1UEBhMCVVMx
+        EzARBgNVBAgMCkNhbGlmb3JuaWExEjAQBgNVBAcMCVBhbG8gQWx0bzEQMA4GA1UE
+        CgwHUGl2b3RhbDEMMAoGA1UECwwDUEVaMSYwJAYDVQQDDB0qLnJ1bi5oYWFzLTQ2
+        NC5wZXoucGl2b3RhbC5pbzAeFw0yMDAyMjcyMTMzNTBaFw0zMDAyMjQyMTMzNTBa
+        MH4xCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRIwEAYDVQQHDAlQ
+        YWxvIEFsdG8xEDAOBgNVBAoMB1Bpdm90YWwxDDAKBgNVBAsMA1BFWjEmMCQGA1UE
+        AwwdKi5ydW4uaGFhcy00NjQucGV6LnBpdm90YWwuaW8wggEiMA0GCSqGSIb3DQEB
+        AQUAA4IBDwAwggEKAoIBAQDB6TuVeTo24oucWAUxJDGk5VSwZJ9tbP479CBAlE4y
+        e6HxSXHmiPoa08MSpktIw7zOtYNlH34Rnmfal2ZhBNssRP9It1DOzheykNeMayqz
+        ojiLlBwYUMEuecgFvPAqeZylDs7zvZqP8+lWi61asrqPdzk7KAol01jHVOINqm1X
+        CI+IneTbpgwLSKB8HukMyk1EDquk1ebP5Mi9Dr0+NwvpzFlyiz3Vq792mxhoVmMI
+        3rL81qO6CHRpB4mtA+wt+xZDuUCEIpYZEV3QOUyitCbieHcN4rKhtGGMbo78GxSO
+        77ebkchNYNqcjPlHnS/KPhIiewX9Htr0LnPYYWmNHjSDAgMBAAGjggEEMIIBADCB
+        zgYDVR0RBIHGMIHDghkqLmhhYXMtNDY0LnBlei5waXZvdGFsLmlvgh0qLnJ1bi5o
+        YWFzLTQ2NC5wZXoucGl2b3RhbC5pb4IgKi5jZmFwcHMuaGFhcy00NjQucGV6LnBp
+        dm90YWwuaW+CIyoubG9naW4ucnVuLmhhYXMtNDY0LnBlei5waXZvdGFsLmlvgiEq
+        LnVhYS5ydW4uaGFhcy00NjQucGV6LnBpdm90YWwuaW+CHSoucGtzLmhhYXMtNDY0
+        LnBlei5waXZvdGFsLmlvMAsGA1UdDwQEAwICpDAgBgNVHSUBAf8EFjAUBggrBgEF
+        BQcDAQYIKwYBBQUHAwIwDQYJKoZIhvcNAQELBQADggEBAIAwErIINZFFnHOqfVCN
+        5fZeuou5j/eVZNzoC2tMPuFeB7Ixp2etZTikJkauaBPl26cqu/HcpiPLdy+4Yjnl
+        u3rblkYDaf/b6Gp+jmYJVPHqrwUJ7Xb5jeQ4QSfgg58uR4srvy0jJIh5KhcbRp03
+        QVtMbzndNUeohAXHAk0Bl4sveJC2gYNCNe0M+Ob07KnUdNF6CaSESJCGw2YCP+BT
+        Wb0mq0jQTQSY21bm/t9O5DdmHlpx+kmuec8ZelTDgLpujrrh0wpYi6cZ1u213t4w
+        qg2rV17iaiZWiLpmFp1OtRO0d5UdLiaXRdhCunoI8NxV9iRNxCpqf8BxPIJZlDZu
+        2iU=
+        -----END CERTIFICATE-----
+      private_key_pem: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDB6TuVeTo24ouc
+        WAUxJDGk5VSwZJ9tbP479CBAlE4ye6HxSXHmiPoa08MSpktIw7zOtYNlH34Rnmfa
+        l2ZhBNssRP9It1DOzheykNeMayqzojiLlBwYUMEuecgFvPAqeZylDs7zvZqP8+lW
+        i61asrqPdzk7KAol01jHVOINqm1XCI+IneTbpgwLSKB8HukMyk1EDquk1ebP5Mi9
+        Dr0+NwvpzFlyiz3Vq792mxhoVmMI3rL81qO6CHRpB4mtA+wt+xZDuUCEIpYZEV3Q
+        OUyitCbieHcN4rKhtGGMbo78GxSO77ebkchNYNqcjPlHnS/KPhIiewX9Htr0LnPY
+        YWmNHjSDAgMBAAECggEAQA+gaqIxFD7FprIBjRmK+RH2Z4vmi40NdJsTKKKWLuFf
+        P8pmwaWREtnQwVGE35Yiwxt+PCMqUAHIB5Qq83RaQAbPW6OMI7Y8Z/an7zDcW5oF
+        Gj+lBHdxSrxa02J26WFh2bnJrwZ9kH8hIEFm1Obk8U6O7rcsmxB2bOvi/mbGVpDf
+        K5SgyRg0YMa71fxaxvmxLoEFeOHxLQDpzwRNq25tqHaqk/jsj/5txchYmCvYk36X
+        Ve54gkRMjuoP1IcfQqL8IFgAazd6djovxIcT5kQZipOe4ISt8qNM8aYxnD4jWw8s
+        pvZ7wkZPta0tqBjHkWHzKJo21d9wGqigyUEvjUZrcQKBgQDlY7j6KCDQVtARTfYl
+        y8JabdCrIFBwvphB1LrThSTvFX0Fqv4YD2DY8Xi3c/mbeti/7eEZ7YdFGCpY9tkD
+        GbjXUJ1c2DlknSmuW9boucepcoWyDAQwx7aghEe18P0PYXQo/SiWsGTCPKSA3JWa
+        FXM1sjoLx8mhAM0b0/NP+SfbyQKBgQDYZ+QYvDAALvo2nEwDPcMYkJK7jL7yz4uD
+        6roKPexem27TYz40Y9Ktbn10O7bzqnUz7iBY+BcFEQHoGAXncD7/QxWjJU73OBlS
+        gpMrt+zn9oO8ybv/3gUvNTYM4t8fJARpJanNlenHtj9udYYtANyLFVLHb3G++AS1
+        uS7SDK9b6wKBgQDYwerBN7oKJH5oW6sE/A2jNbHAgsCASRnG2yXPSjkkUsHY4UNJ
+        qP5zAXp4n/Z1nRfEBRx4S6NO/w7FEjzuWRf5HgwU950EHh6My+u/7g1laPo8zG4J
+        Si6gb17z5cy7A/On59C60+PiRzuLKOWUvEAptUh0aU11/jPS3+1C3MV1QQKBgQCG
+        wZruNDGHy7kPzKAg3JLidxSIKYq2VLtB+CbFPe40s4F9rK0NnqOQT99bQ9wXO6wk
+        HEKUZFihVQfk6SC0D9eKyNFueEsF8y8BjEHs1Wl2wLEkHFMvb6e2z+HKgHQERj9g
+        4o0scg/Txw8Uz6Yv2/t5uFuFyUYBbxwvtRMMxc1k5QKBgQCEnoozVL+9kGjqGv+L
+        YuxjSWhInKeRgBGH1sV//urI1HIudN8fxihA8+DJJ0nIb0w+su+5FWqEMhKpD88J
+        t57CRaFRxAGnU6q5aRq7LLVfRwjDYenA8BbktjSs41o7zKx0mel6HnvxtA6hrZ7r
+        2uQJVOcd54UZO/9NjcWOB6y7YA==
+        -----END PRIVATE KEY-----
+  .properties.bosh-metric-sink-etcd:
+    value: true
+  .properties.bosh-metric-sink-kube-apiserver:
+    value: false
+  .properties.bosh-metric-sink-kube-controller-manager:
+    value: false
+  .properties.bosh-metric-sink-kubelet:
+    value: false
+  .properties.bosh-metric-sink-node-exporter-master:
+    value: false
+  .properties.bosh-metric-sink-node-exporter-pks-api:
+    value: false
+  .properties.bosh-metric-sink-node-exporter-worker:
+    value: false
+  .properties.bosh-metric-sink-outputs:
+    value: |
+      [[outputs.discard]]
+  .properties.cloud_provider:
+    value: vSphere
+  .properties.cloud_provider.vsphere.vcenter_master_creds:
+    value:
+      identity: administrator@vsphere.local
+      password: AHxOEg6fu3SHCDwUnm!
+      #   value: AHxOEg6fu3SHCDwUnm!
+  .properties.cloud_provider.vsphere.vcenter_ip:
+    value: vcsa-01.haas-221.pez.pivotal.io
+  .properties.cloud_provider.vsphere.vcenter_dc:
+    value: Datacenter
+  .properties.cloud_provider.vsphere.vcenter_ds:
+    value: LUN01
+  .properties.cloud_provider.vsphere.vcenter_vms:
+    value: bosh_vms
+  .properties.log_sink_resources_deploy:
+    value: true
+  .properties.metric_sink_resources_deploy:
+    value: true
+  .properties.network_selector:
+    value: flannel
+  .properties.node_exporter_deploy:
+    value: false
+  .properties.oidc_selector:
+    value: disabled
+  .properties.pks-vrli:
+    value: disabled
+  .properties.pks-vrops:
+    value: disabled
+  .properties.pks_api_hostname:
+    value: ((api-hostname))
+  .properties.plan1_selector:
+    value: Plan Active
+
+
+  .properties.plan1_selector.active.name:
+    value: "small"  # the name that appears for end users to choose
+  .properties.plan1_selector.active.description:
+    value: "Small plan"
+  .properties.plan1_selector.active.master_az_placement:
+    value: [pks-az1]  # Specify the availability zones you want your master and ETCD nodes spread across equally. If only one master/ETCD has been selected, choose a single AZ for your singleton job.
+  .properties.plan1_selector.active.worker_az_placement:
+    value: [pks-az2, pks-az2, pks-az3]  # Specify the availability zones you want your worker nodes spread across equally.
+  .properties.plan1_selector.active.master_instances:
+    value: 1
+  .properties.plan1_selector.active.master_vm_type:
+    value: medium.disk
+  .properties.plan1_selector.active.master_persistent_disk_type:
+    value: "10240"
+  .properties.plan1_selector.active.worker_vm_type:
+    value: medium.disk
+  .properties.plan1_selector.active.worker_persistent_disk_type:
+    value: "10240"
+  .properties.plan1_selector.active.worker_instances:
+    value: 3    # The number of K8s worker instances
+  .properties.plan1_selector.active.errand_vm_type:
+    value: micro
+  .properties.plan1_selector.active.addons_spec:
+    value: "" # Kubernetes yml that contains specifications of addons to run on every cluster. This is an experimental feature. Please consider carefully before applying this to your plan
+  .properties.plan1_selector.active.allow_privileged_containers:
+    value: false  # Privileged containers run with host-like permissions. Allowing your users to deploy privileged containers in clusters using this plan can create security vulnerabilities and may impact other tiles. Use with caution.
+
+
+
+  .properties.plan2_selector:
+    value: Plan Inactive
+  .properties.plan3_selector:
+    value: Plan Inactive
+  .properties.plan4_selector:
+    value: Plan Inactive
+  .properties.plan5_selector:
+    value: Plan Inactive
+  .properties.plan6_selector:
+    value: Plan Inactive
+  .properties.plan7_selector:
+    value: Plan Inactive
+  .properties.plan8_selector:
+    value: Plan Inactive
+  .properties.plan9_selector:
+    value: Plan Inactive
+  .properties.plan10_selector:
+    value: Plan Inactive
+  .properties.plan11_selector:
+    value: Plan Inactive
+  .properties.plan12_selector:
+    value: Plan Inactive
+  .properties.plan13_selector:
+    value: Plan Inactive
+  .properties.proxy_selector:
+    value: Disabled
+  .properties.syslog_selector:
+    value: disabled
+  .properties.telemetry_installation_purpose_selector:
+    value: demo_or_poc
+  .properties.telemetry_selector:
+    value: disabled
+  .properties.tmc:
+    value: disabled
+  .properties.uaa:
+    value: internal
+  .properties.uaa_pks_cli_access_token_lifetime:
+    value: 600
+  .properties.uaa_pks_cli_refresh_token_lifetime:
+    value: 21600
+  .properties.uaa_pks_cluster_client_access_token_lifetime:
+    value: 600
+  .properties.uaa_pks_cluster_client_refresh_token_lifetime:
+    value: 21600
+  .properties.vm_extensions:
+    value:
+    - public_ip
+  .properties.wavefront:
+    value: disabled
+  .properties.worker_max_in_flight:
+    value: 1
+network-properties:
+  network:
+    name: pks
+  other_availability_zones:
+  - name: pks-az1
+  - name: pks-az2
+  - name: pks-az3
+  service_network:
+    name: pks
+  singleton_availability_zone:
+    name: pks-az1
+resource-config:
+  pivotal-container-service:
+    instances: automatic
+    persistent_disk:
+      size_mb: automatic
+    instance_type:
+      id: automatic
+errand-config:
+  delete-all-clusters:
+    pre-delete-state: false
+  pks-nsx-t-precheck:
+    post-deploy-state: false
+  smoke-tests:
+    post-deploy-state: false
+  upgrade-all-service-instances:
+    post-deploy-state: true
+  wavefront-alert-creation:
+    post-deploy-state: false
+  wavefront-alert-deletion:
+    pre-delete-state: false
+

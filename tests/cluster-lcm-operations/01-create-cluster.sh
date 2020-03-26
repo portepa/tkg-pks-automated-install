@@ -1,0 +1,1 @@
+pks create-cluster cluster02 -p small -e cluster01.run.haas-464.pez.pivotal.io

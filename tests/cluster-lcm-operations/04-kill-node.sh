@@ -1,0 +1,1 @@
+pks resize-cluster cluster02 -n 2
