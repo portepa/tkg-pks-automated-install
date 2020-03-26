@@ -13,7 +13,7 @@ Download stemcells:
 
 1. Install ESXi
 2. Install vCenter
-3. Create 3 AZs named `pks-az1`, `pks-az2`, `pks-az3`
+3. Create 3 Resource Pools named `pks-az1`, `pks-az2`, `pks-az3`
 
 ## Step 2
 
